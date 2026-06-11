@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <radialGradient id="bg" cx="40%" cy="35%" r="70%">
+      <stop offset="0%" stop-color="#1a1a2e"/>
+      <stop offset="100%" stop-color="#0a0a0f"/>
+    </radialGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#00d4ff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blur">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+    <filter id="softglow">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <circle cx="256" cy="256" r="256" fill="url(#bg)"/>
+
+  <!-- Subtle glow blob -->
+  <circle cx="256" cy="256" r="180" fill="url(#glow)" filter="url(#blur)"/>
+
+  <!-- Thin outer ring -->
+  <circle cx="256" cy="256" r="220" fill="none" stroke="#00d4ff" stroke-width="1" stroke-opacity="0.2"/>
+
+  <!-- Inner accent ring -->
+  <circle cx="256" cy="256" r="190" fill="none" stroke="#00d4ff" stroke-width="0.5" stroke-opacity="0.1"/>
+
+  <!-- Letter S -->
+  <text
+    x="256"
+    y="310"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="230"
+    font-weight="700"
+    text-anchor="middle"
+    fill="none"
+    stroke="#00d4ff"
+    stroke-width="2"
+    filter="url(#softglow)"
+    letter-spacing="-5"
+  >S</text>
+
+  <!-- Subtle horizontal line accent -->
+  <line x1="160" y1="360" x2="352" y2="360" stroke="#00d4ff" stroke-width="1" stroke-opacity="0.3"/>
+
+  <!-- Dot accents -->
+  <circle cx="152" cy="360" r="3" fill="#00d4ff" fill-opacity="0.5"/>
+  <circle cx="360" cy="360" r="3" fill="#00d4ff" fill-opacity="0.5"/>
+
+  <!-- Small "stick" label -->
+  <text
+    x="256"
+    y="400"
+    font-family="'Courier New', monospace"
+    font-size="28"
+    font-weight="400"
+    text-anchor="middle"
+    fill="#00d4ff"
+    fill-opacity="0.5"
+    letter-spacing="8"
+  >STICK</text>
+</svg>

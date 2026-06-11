@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stiwall Labs — Proyectos, Software y Automatizaciones · RD</title>
+<meta name="description" content="El laboratorio de Starlin (Stiwall): MisCuentas, MisFinanza, bots, automatizaciones y webs para negocios dominicanos.">
+<link rel="icon" type="image/svg+xml" href="icons/stick.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#060606;
+  --bg-card:rgba(168,85,247,.08);
+  --grad-a:#a855f7;
+  --grad-b:#ec4899;
+  --text:#f1ede4;
+  --muted:#8a7a98;
+  --border:rgba(168,85,247,.25);
+  --border-hover:rgba(236,72,153,.5);
+  --maxw:1080px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+::selection{background:var(--grad-a);color:#060606}
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+  overflow-x:hidden;
+}
+.mono{font-family:'JetBrains Mono',monospace}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.grad-text{
+  background:linear-gradient(90deg,var(--grad-a),var(--grad-b));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+
+/* ---------- fondo ambiental ---------- */
+.glow{position:fixed;border-radius:50%;filter:blur(120px);pointer-events:none;z-index:0;opacity:.5}
+.glow-1{width:520px;height:520px;background:rgba(168,85,247,.16);top:-180px;left:-140px}
+.glow-2{width:460px;height:460px;background:rgba(236,72,153,.10);top:34%;right:-180px}
+.glow-3{width:480px;height:480px;background:rgba(168,85,247,.10);bottom:-200px;left:30%}
+main{position:relative;z-index:1}
+
+/* ---------- nav ---------- */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(6,6,6,.7);backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(168,85,247,.15);
+}
+.nav-in{max-width:var(--maxw);margin:0 auto;padding:0 24px;height:62px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo .mark{
+  font-family:'JetBrains Mono',monospace;font-weight:700;font-size:1.15rem;
+  background:linear-gradient(90deg,var(--grad-a),var(--grad-b));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.logo .word{font-weight:800;font-size:1.05rem;color:var(--text);letter-spacing:-.01em}
+.logo .labs{
+  font-family:'JetBrains Mono',monospace;font-size:.6rem;font-weight:700;
+  letter-spacing:.42em;color:var(--muted);margin-left:2px;
+}
+.nav-links{display:flex;gap:24px;align-items:center}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.84rem;font-weight:600;transition:color .15s}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{
+  background:linear-gradient(90deg,var(--grad-a),var(--grad-b));
+  color:#fff !important;padding:9px 18px;border-radius:10px;font-weight:700;font-size:.82rem !important;
+  transition:opacity .15s, transform .15s !important;
+}
+.nav-cta:hover{opacity:.88;transform:translateY(-1px)}
+@media(max-width:720px){.nav-links a:not(.nav-cta){display:none}}
+
+/* ---------- hero ---------- */
+.hero{padding:170px 0 90px;text-align:left}
+.kicker{
+  display:inline-flex;align-items:center;gap:9px;
+  font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+  border:1px solid var(--border);border-radius:999px;padding:8px 16px;margin-bottom:30px;
+  background:var(--bg-card);
+}
+.kicker .dot{width:7px;height:7px;border-radius:50%;background:#34d399;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+.hero h1{
+  font-weight:900;letter-spacing:-.035em;
+  font-size:clamp(2.6rem,7.5vw,5rem);line-height:1.02;max-width:18ch;
+}
+.hero .sub{margin-top:24px;color:var(--muted);font-size:clamp(1rem,1.6vw,1.15rem);max-width:54ch;font-weight:500}
+.hero .sub strong{color:var(--text)}
+.hero-ctas{margin-top:36px;display:flex;gap:14px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;padding:15px 26px;border-radius:12px;
+  font-weight:800;font-size:.95rem;text-decoration:none;
+  transition:transform .15s, opacity .15s, border-color .15s, box-shadow .15s;
+}
+.btn:active{transform:scale(.97)}
+.btn-grad{
+  background:linear-gradient(90deg,var(--grad-a),var(--grad-b));color:#fff;
+  box-shadow:0 10px 34px -10px rgba(168,85,247,.5);
+}
+.btn-grad:hover{opacity:.9;transform:translateY(-2px);box-shadow:0 14px 40px -10px rgba(236,72,153,.55)}
+.btn-line{border:1px solid var(--border);color:var(--text);background:var(--bg-card)}
+.btn-line:hover{border-color:var(--border-hover);transform:translateY(-2px)}
+
+/* ---------- secciones ---------- */
+section{padding:88px 0;position:relative}
+.eyebrow{
+  font-family:'JetBrains Mono',monospace;font-size:.72rem;font-weight:700;
+  letter-spacing:.2em;text-transform:uppercase;margin-bottom:16px;
+  background:linear-gradient(90deg,var(--grad-a),var(--grad-b));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+h2{font-weight:900;letter-spacing:-.03em;font-size:clamp(1.9rem,4.5vw,2.9rem);line-height:1.05;margin-bottom:12px}
+.lead{color:var(--muted);max-width:56ch;margin-bottom:46px;font-size:1.02rem}
+
+/* ---------- proyectos ---------- */
+.grid-proj{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px}
+.proj{
+  background:var(--bg-card);border:1px solid var(--border);border-radius:18px;
+  padding:26px 24px;display:flex;flex-direction:column;text-decoration:none;color:var(--text);
+  backdrop-filter:blur(8px);position:relative;overflow:hidden;
+  transition:transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+}
+.proj::before{
+  content:"";position:absolute;inset:0;border-radius:18px;padding:1px;
+  background:linear-gradient(135deg,rgba(168,85,247,.55),rgba(236,72,153,.0) 55%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;
+  opacity:0;transition:opacity .2s ease;pointer-events:none;
+}
+.proj:hover{transform:translateY(-5px);border-color:var(--border-hover);box-shadow:0 20px 50px -22px rgba(168,85,247,.45)}
+.proj:hover::before{opacity:1}
+.proj-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px}
+.proj .icon{
+  width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+  font-size:1.35rem;background:linear-gradient(135deg,rgba(168,85,247,.22),rgba(236,72,153,.18));
+  border:1px solid var(--border);overflow:hidden;
+}
+.proj .icon img{width:100%;height:100%;object-fit:cover;border-radius:11px;display:block}
+.proj .status{
+  font-family:'JetBrains Mono',monospace;font-size:.62rem;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;padding:5px 10px;border-radius:999px;
+  border:1px solid var(--border);color:var(--muted);
+}
+.proj .status.live{color:#34d399;border-color:rgba(52,211,153,.35)}
+.proj h3{font-weight:800;font-size:1.2rem;letter-spacing:-.015em;margin-bottom:6px}
+.proj p{color:var(--muted);font-size:.9rem;flex:1}
+.proj .link{
+  margin-top:18px;font-family:'JetBrains Mono',monospace;font-size:.74rem;font-weight:700;
+  display:flex;align-items:center;gap:7px;
+  background:linear-gradient(90deg,var(--grad-a),var(--grad-b));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.proj .link .arr{transition:transform .2s ease;display:inline-block;color:var(--grad-b)}
+.proj:hover .link .arr{transform:translateX(5px)}
+
+/* ---------- servicios ---------- */
+.grid-serv{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:18px}
+.serv{
+  background:var(--bg-card);border:1px solid var(--border);border-radius:18px;
+  padding:26px 24px;display:flex;flex-direction:column;backdrop-filter:blur(8px);
+  transition:transform .2s, border-color .2s, box-shadow .2s;position:relative;
+}
+.serv:hover{transform:translateY(-5px);border-color:var(--border-hover);box-shadow:0 20px 50px -22px rgba(236,72,153,.4)}
+.serv .code{
+  font-family:'JetBrains Mono',monospace;font-size:.66rem;font-weight:700;
+  letter-spacing:.16em;color:var(--muted);margin-bottom:14px;
+}
+.serv h3{font-weight:800;font-size:1.15rem;margin-bottom:8px;letter-spacing:-.01em}
+.serv ul{list-style:none;display:grid;gap:8px;margin-bottom:22px;font-size:.88rem;color:var(--muted)}
+.serv li{padding-left:18px;position:relative}
+.serv li::before{content:"›";position:absolute;left:0;font-weight:800;color:var(--grad-b)}
+.serv .precio{
+  margin-top:auto;border-top:1px solid var(--border);padding-top:14px;
+  display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap;
+}
+.serv .desde{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.serv .monto{font-weight:900;font-size:1.3rem;letter-spacing:-.02em}
+.serv .rec{font-size:.76rem;color:var(--muted)}
+.serv.destacado{
+  background:linear-gradient(135deg,rgba(168,85,247,.16),rgba(236,72,153,.12));
+  border-color:rgba(236,72,153,.45);
+}
+.badge{
+  position:absolute;top:-12px;right:18px;
+  background:linear-gradient(90deg,var(--grad-a),var(--grad-b));color:#fff;
+  font-family:'JetBrains Mono',monospace;font-size:.6rem;font-weight:700;
+  letter-spacing:.14em;text-transform:uppercase;padding:6px 13px;border-radius:999px;
+}
+
+/* ---------- sobre mí ---------- */
+.about{
+  display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;
+  background:var(--bg-card);border:1px solid var(--border);border-radius:22px;padding:42px 38px;
+  backdrop-filter:blur(8px);
+}
+@media(max-width:780px){.about{grid-template-columns:1fr;padding:30px 24px}}
+.about h2{font-size:clamp(1.6rem,3.5vw,2.2rem)}
+.about p{color:var(--muted);margin-bottom:14px;font-size:.96rem}
+.about p strong{color:var(--text)}
+.stack{display:flex;flex-wrap:wrap;gap:9px;margin-top:10px}
+.chip{
+  font-family:'JetBrains Mono',monospace;font-size:.7rem;font-weight:700;
+  border:1px solid var(--border);border-radius:999px;padding:7px 14px;color:var(--muted);
+  transition:border-color .15s,color .15s;
+}
+.chip:hover{border-color:var(--border-hover);color:var(--text)}
+
+/* ---------- cta final ---------- */
+.final{text-align:center;padding:110px 0}
+.final h2{font-size:clamp(2.2rem,6vw,3.6rem)}
+.final p{color:var(--muted);margin:16px auto 34px;max-width:46ch}
+.final .mono-line{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--muted);letter-spacing:.16em;text-transform:uppercase;margin-top:28px}
+
+/* ---------- footer ---------- */
+footer{border-top:1px solid rgba(168,85,247,.15);padding:30px 0;font-size:.84rem;color:var(--muted)}
+.foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+footer a{color:var(--text);text-decoration:none;transition:color .15s}
+footer a:hover{color:var(--grad-b)}
+
+/* ---------- reveal ---------- */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease, transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+
+a:focus-visible,.btn:focus-visible{outline:2px solid var(--grad-b);outline-offset:3px}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none !important;transition:none !important}
+  .reveal{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<div class="glow glow-1" aria-hidden="true"></div>
+<div class="glow glow-2" aria-hidden="true"></div>
+<div class="glow glow-3" aria-hidden="true"></div>
+
+<nav>
+  <div class="nav-in">
+    <a class="logo" href="#">
+      <span class="mark">&lt;/&gt;</span>
+      <span class="word">stiwall</span>
+      <span class="labs">L A B S</span>
+    </a>
+    <div class="nav-links">
+      <a href="#proyectos">Proyectos</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#sobre">Sobre mí</a>
+      <a class="nav-cta" href="https://wa.me/1809XXXXXXX?text=Hola%20Starlin,%20vi%20Stiwall%20Labs">Hablemos →</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker reveal in"><span class="dot"></span> Disponible para proyectos · Santo Domingo, RD 🇩🇴</div>
+    <h1 class="reveal in">Construyo <span class="grad-text">software y automatizaciones</span> para negocios dominicanos.</h1>
+    <p class="sub reveal in">Soy Starlin — <strong>de día organizo almacenes, de noche construyo en el laboratorio.</strong> Apps, bots, webs y sistemas que hacen que un negocio trabaje solo.</p>
+    <div class="hero-ctas reveal in">
+      <a class="btn btn-grad" href="https://wa.me/1809XXXXXXX?text=Hola%20Starlin,%20quiero%20info%20de%20tus%20servicios">Escríbeme por WhatsApp</a>
+      <a class="btn btn-line" href="#proyectos">Ver el laboratorio ↓</a>
+    </div>
+  </div>
+</header>
+
+<!-- PROYECTOS -->
+<section id="proyectos">
+  <div class="wrap">
+    <div class="eyebrow reveal">// El laboratorio</div>
+    <h2 class="reveal">Proyectos</h2>
+    <p class="lead reveal">Cosas reales, construidas de cero y funcionando hoy.</p>
+
+    <div class="grid-proj">
+      <a class="proj reveal" href="https://miscuentasrd.com" target="_blank" rel="noopener">
+        <div class="proj-top"><div class="icon"><img src="icons/miscuentas.png" alt="MisCuentas"></div><span class="status live">● En producción</span></div>
+        <h3>MisCuentas Contable</h3>
+        <p>SaaS de contabilidad para PYMEs dominicanas. NCF automático, reportes 606/607/608 en un clic, inventario con control de merma y bot de Telegram con IA.</p>
+        <span class="link">miscuentasrd.com <span class="arr">→</span></span>
+      </a>
+
+      <a class="proj reveal" href="https://t.me/mcontablesbot" target="_blank" rel="noopener">
+        <div class="proj-top"><div class="icon"><img src="icons/miscuentas.png" alt="Bot MisCuentas"></div><span class="status live">● En producción</span></div>
+        <h3>Bot MisCuentas</h3>
+        <p>Registra ventas y gastos hablándole por Telegram en lenguaje natural. IA que entiende "vendí 5 libras a 350" y lo contabiliza solo.</p>
+        <span class="link">t.me/mcontablesbot <span class="arr">→</span></span>
+      </a>
+
+      <a class="proj reveal" href="#" rel="noopener">
+        <div class="proj-top"><div class="icon"><img src="icons/misfinanza.png" alt="MisFinanza"></div><span class="status">En desarrollo</span></div>
+        <h3>MisFinanza</h3>
+        <p>La hermana de MisCuentas: finanzas personales por Telegram. Tu bolsillo y tu negocio, conectados en un solo ecosistema.</p>
+        <span class="link">Próximamente <span class="arr">→</span></span>
+      </a>
+
+      <a class="proj reveal" href="https://stiwall.github.io/elcompa_chicharron/" target="_blank" rel="noopener">
+        <div class="proj-top"><div class="icon"><img src="icons/elcompa.png" alt="El Compa Chicharrón"></div><span class="status live">● En producción</span></div>
+        <h3>El Compa Chicharrón</h3>
+        <p>Caso real: web, identidad "street food premium", contenido para redes y control de merma con MisCuentas para un negocio de comida en SD.</p>
+        <span class="link">Ver el caso <span class="arr">→</span></span>
+      </a>
+
+      <a class="proj reveal" href="https://t.me/Stiwall_bot" target="_blank" rel="noopener">
+        <div class="proj-top"><div class="icon"><img src="icons/stick.svg" alt="Stick"></div><span class="status live">● Activo 24/7</span></div>
+        <h3>Stick — Agente IA</h3>
+        <p>Mi asistente personal con IA corriendo en mi propio servidor. Crea contenido, monitorea sistemas y ejecuta tareas por Telegram. R&D del laboratorio.</p>
+        <span class="link">t.me/Stiwall_bot <span class="arr">→</span></span>
+      </a>
+
+      <a class="proj reveal" href="https://github.com/Stiwall" target="_blank" rel="noopener">
+        <div class="proj-top"><div class="icon"><span class="mono" style="font-size:1rem">&lt;/&gt;</span></div><span class="status">Open</span></div>
+        <h3>GitHub</h3>
+        <p>El código detrás de todo. Repos, experimentos y lo que se está cocinando en el laboratorio ahora mismo.</p>
+        <span class="link">github.com/Stiwall <span class="arr">→</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios">
+  <div class="wrap">
+    <div class="eyebrow reveal">// Trabaja conmigo</div>
+    <h2 class="reveal">Servicios</h2>
+    <p class="lead reveal">Paquetes con precio claro y entrega definida. Todos incluyen capacitación para que tú mismo lo manejes.</p>
+
+    <div class="grid-serv">
+      <div class="serv reveal">
+        <div class="code">SRV-001 · WEB</div>
+        <h3>Web Express</h3>
+        <ul>
+          <li>Landing de 1 página, rápida y moderna</li>
+          <li>Botón directo a tu WhatsApp</li>
+          <li>Dominio + Google Analytics</li>
+        </ul>
+        <div class="precio"><div><div class="desde">Desde</div><div class="monto">RD$8,000</div></div><span class="rec">+ RD$500/mes</span></div>
+      </div>
+
+      <div class="serv reveal">
+        <div class="code">SRV-002 · WEB</div>
+        <h3>Web Negocio</h3>
+        <ul>
+          <li>Hasta 5 secciones + catálogo</li>
+          <li>SEO básico para salir en Google</li>
+          <li>Formulario de contacto</li>
+        </ul>
+        <div class="precio"><div><div class="desde">Desde</div><div class="monto">RD$15,000</div></div><span class="rec">+ RD$800/mes</span></div>
+      </div>
+
+      <div class="serv reveal">
+        <div class="code">SRV-003 · BOT</div>
+        <h3>Bot de WhatsApp</h3>
+        <ul>
+          <li>Respuestas automáticas 24/7</li>
+          <li>Menú de pedidos y horarios</li>
+          <li>Responde en segundos, no en horas</li>
+        </ul>
+        <div class="precio"><div><div class="desde">Desde</div><div class="monto">RD$10,000</div></div><span class="rec">+ RD$1,500/mes</span></div>
+      </div>
+
+      <div class="serv reveal">
+        <div class="code">SRV-004 · AUTOMATIZACIÓN</div>
+        <h3>Automatización n8n</h3>
+        <ul>
+          <li>Reportes automáticos a tu WhatsApp</li>
+          <li>Recordatorios de cobro a clientes</li>
+          <li>Conecta tus apps — sin digitar dos veces</li>
+        </ul>
+        <div class="precio"><div><div class="desde">Desde</div><div class="monto">RD$12,000</div></div><span class="rec">+ RD$2,000/mes</span></div>
+      </div>
+
+      <div class="serv destacado reveal">
+        <div class="badge">★ Más pedido</div>
+        <div class="code">SRV-005 · COMBO</div>
+        <h3>Negocio Digital</h3>
+        <ul>
+          <li>Web Express + Bot de WhatsApp</li>
+          <li>MisCuentas configurado para ti</li>
+          <li>En línea, atendiendo y con cuentas claras</li>
+        </ul>
+        <div class="precio"><div><div class="desde">Desde</div><div class="monto">RD$25,000</div></div><span class="rec">+ plan mensual</span></div>
+      </div>
+
+      <div class="serv reveal">
+        <div class="code">SRV-006 · LOGÍSTICA</div>
+        <h3>Auditoría de Almacén</h3>
+        <ul>
+          <li>Diagnóstico de inventario y procesos</li>
+          <li>Plan de organización con prioridades</li>
+          <li>8+ años de experiencia en logística</li>
+        </ul>
+        <div class="precio"><div><div class="desde">A medida</div><div class="monto">Cotización</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE MÍ -->
+<section id="sobre">
+  <div class="wrap">
+    <div class="about reveal">
+      <div>
+        <div class="eyebrow">// Quién está detrás</div>
+        <h2>Starlin <span class="grad-text">"Stiwall"</span></h2>
+        <p><strong>8+ años organizando la logística de una de las empresas más grandes de RD.</strong> Esa disciplina de almacén — procesos claros, inventario exacto, cero improvisación — es la que aplico a cada proyecto de software.</p>
+        <p>Autodidacta. Construyo, pruebo en mis propios negocios y clientes reales, y solo entonces lo ofrezco. Nada de teoría.</p>
+      </div>
+      <div>
+        <div class="code mono" style="font-size:.68rem;letter-spacing:.16em;color:var(--muted);margin-bottom:12px">STACK DEL LABORATORIO</div>
+        <div class="stack">
+          <span class="chip">JavaScript</span>
+          <span class="chip">Node / Express</span>
+          <span class="chip">Telegram Bots</span>
+          <span class="chip">n8n</span>
+          <span class="chip">IA / LLMs</span>
+          <span class="chip">Linux VPS</span>
+          <span class="chip">Railway</span>
+          <span class="chip">GitHub</span>
+          <span class="chip">ffmpeg</span>
+          <span class="chip">Logística</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="final">
+  <div class="wrap">
+    <h2 class="reveal">¿Construimos <span class="grad-text">lo tuyo?</span></h2>
+    <p class="reveal">Cuéntame qué necesita tu negocio y en menos de 24 horas te respondo con propuesta y precio.</p>
+    <a class="btn btn-grad reveal" href="https://wa.me/1809XXXXXXX?text=Hola%20Starlin,%20quiero%20cotizar%20un%20proyecto">Escríbeme por WhatsApp</a>
+    <div class="mono-line reveal">stiwall_labs · respuesta &lt; 24h · sin compromiso</div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <div><span class="mono grad-text" style="font-weight:700">&lt;/&gt;</span> <strong style="color:var(--text)">stiwall</strong> <span class="mono" style="font-size:.6rem;letter-spacing:.4em">LABS</span> · Santo Domingo, RD</div>
+    <div>
+      <a href="https://instagram.com/stiwall" target="_blank" rel="noopener">Instagram</a> ·
+      <a href="https://github.com/Stiwall" target="_blank" rel="noopener">GitHub</a> ·
+      <a href="https://t.me/mcontablesbot" target="_blank" rel="noopener">Telegram</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
